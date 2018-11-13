@@ -28,7 +28,7 @@ aes-ce-cipher-y := aes-ce-cipher-glue.o aes-ce-cipher-core.o
 CFLAGS_aes-ce-cipher-core.o += -march=armv8.2-a+crypto -Wa,-march=armv8.2-a+crypto $(DISABLE_LTO) $(call cc-option,-no-integrated-as)
 
 ifeq ($(cc-name),gcc)
-	CFLAGS_aes-ce-cipher-core.o += $(call cc-ifversion, -ge, 0800, -mcpu=cortex-a75.cortex-a55 -mtune=cortex-a75.cortex-a55)
+	CFLAGS_aes-ce-cipher-core.o += -mcpu=cortex-a75.cortex-a55+crypto -mtune=cortex-a75.cortex-a55+crypto
 else
 	CFLAGS_aes-ce-cipher-core.o += -mcpu=cortex-a55+crypto -mtune=cortex-a55+crypto
 endif
