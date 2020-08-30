@@ -143,6 +143,9 @@ struct usb_phy {
 
 	/* reset the PHY clocks */
 	int     (*reset)(struct usb_phy *x);
+
+	int	(*drive_dp_pulse)(struct usb_phy *x, unsigned int pulse_width);
+    
 	int	(*disable_chirp)(struct usb_phy *x, bool disable);
 };
 
@@ -232,6 +235,15 @@ usb_phy_reset(struct usb_phy *x)
 {
 	if (x && x->reset)
 		return x->reset(x);
+
+	return 0;
+}
+
+static inline int
+usb_phy_drive_dp_pulse(struct usb_phy *x, unsigned int pulse_width)
+{
+	if (x && x->drive_dp_pulse)
+		return x->drive_dp_pulse(x, pulse_width);
 
 	return 0;
 }
