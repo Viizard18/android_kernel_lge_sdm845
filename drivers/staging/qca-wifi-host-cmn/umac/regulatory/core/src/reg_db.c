@@ -951,11 +951,11 @@ enum reg_domains_2g {
 	WORLD_2G_1,
 	WORLD_2G_2,
 	WORLD_2G_3,
-	REG_DOMAINS_2G_MAX,
 #if FEATURE_SUPPORT_LGE
 	WORLD_2G_LGE1,
 	WORLD_2G_LGE2,
 #endif
+	REG_DOMAINS_2G_MAX,
 };
 
 enum reg_domains_5g {
@@ -1010,11 +1010,12 @@ enum reg_domains_5g {
 	MKK17,
 	WORLD_5G_1,
 	WORLD_5G_2,
-	REG_DOMAINS_5G_MAX,
 #if FEATURE_SUPPORT_LGE
 	WORLD_5G_LGE,
 #endif
+	REG_DOMAINS_5G_MAX,
 };
+
 
 const struct reg_domain_pair g_reg_dmn_pairs[] = {
 	{NULL1_WORLD, NULL1, WORLD},
