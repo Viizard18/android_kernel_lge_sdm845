@@ -247,7 +247,6 @@ static int start_kpolicy(int kpolicy)
 static int stop_kpolicy(void)
 {
 	int last_policy, cl = -1, dest_cpu = -1;
-	struct device *dev;
 
 	if (!platform_data.notify_info.cur_policy ||
 			platform_data.state == FREEZE)
