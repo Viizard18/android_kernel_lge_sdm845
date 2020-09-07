@@ -611,7 +611,6 @@ void lim_fill_ft_session(tpAniSirGlobal pMac,
 	pftSessionEntry->ssId.length = pBeaconStruct->ssId.length;
 	qdf_mem_copy(pftSessionEntry->ssId.ssId, pBeaconStruct->ssId.ssId,
 		     pftSessionEntry->ssId.length);
-
 	/* Copy The channel Id to the session Table */
 	pftSessionEntry->limReassocChannelId = pbssDescription->channelId;
 	pftSessionEntry->currentOperChannel = pbssDescription->channelId;

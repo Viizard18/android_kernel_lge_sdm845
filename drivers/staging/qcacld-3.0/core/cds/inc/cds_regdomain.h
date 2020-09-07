@@ -65,7 +65,7 @@
 #include <reg_services_public_struct.h>
 
 #define MIN_TX_PWR_CAP    8
-#define MAX_TX_PWR_CAP    24
+#define MAX_TX_PWR_CAP    30
 
 #define CTRY_DEFAULT          0
 #define CTRY_FLAG             0x8000

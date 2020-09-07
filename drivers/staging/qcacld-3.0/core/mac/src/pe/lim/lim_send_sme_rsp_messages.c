@@ -1835,6 +1835,11 @@ static QDF_STATUS lim_process_csa_wbw_ie(tpAniSirGlobal mac_ctx,
 
 	ap_new_ch_width = csa_params->new_ch_width + 1;
 
+	pe_debug("new channel: %d new_ch_width: %d seg0: %d seg1: %d",
+		 csa_params->channel, ap_new_ch_width,
+		 csa_params->new_ch_freq_seg1,
+		 csa_params->new_ch_freq_seg2);
+
 	if ((ap_new_ch_width != CH_WIDTH_80MHZ) &&
 			(ap_new_ch_width != CH_WIDTH_160MHZ) &&
 			(ap_new_ch_width != CH_WIDTH_80P80MHZ)) {
@@ -1933,6 +1938,11 @@ static QDF_STATUS lim_process_csa_wbw_ie(tpAniSirGlobal mac_ctx,
 		chnl_switch_info->newChanWidth = ap_new_ch_width;
 	}
 prnt_log:
+	pe_debug("new channel: %d new_ch_width: %d seg0: %d seg1: %d",
+			csa_params->channel,
+			chnl_switch_info->newChanWidth,
+			chnl_switch_info->newCenterChanFreq0,
+			chnl_switch_info->newCenterChanFreq1);
 
 	return QDF_STATUS_SUCCESS;
 }
@@ -1962,6 +1972,8 @@ void lim_handle_csa_offload_msg(tpAniSirGlobal mac_ctx,
 	tLimWiderBWChannelSwitchInfo *chnl_switch_info = NULL;
 	tLimChannelSwitchInfo *lim_ch_switch = NULL;
 
+	pe_debug("handle csa offload msg");
+
 	if (!csa_params) {
 		pe_err("limMsgQ body ptr is NULL");
 		return;
@@ -1972,6 +1984,7 @@ void lim_handle_csa_offload_msg(tpAniSirGlobal mac_ctx,
 		pe_err("memalloc fail eWNI_SME_CSA_OFFLOAD_EVENT");
 		goto err;
 	}
+
 	if (WLAN_REG_IS_24GHZ_CH(csa_params->channel)) {
 		channel_bonding_mode =
 			mac_ctx->roam.configParam.channelBondingMode24GHz;

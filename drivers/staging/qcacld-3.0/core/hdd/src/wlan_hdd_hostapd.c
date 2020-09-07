@@ -3581,6 +3581,10 @@ static __iw_softap_setparam(struct net_device *dev,
 
 	hdd_enter_dev(dev);
 
+// [LGE_CHANGE_S] 2017.04.26, neo-wifi@lge.com, Add Reset Command for KPI log
+	hdd_err("__iw_softap_setparam() : Cmd : %d", sub_cmd);
+// [LGE_CHANGE_E] 2017.04.26, neo-wifi@lge.com, Add Reset Command for KPI log
+
 	hdd_ctx = WLAN_HDD_GET_CTX(adapter);
 	ret = wlan_hdd_validate_context(hdd_ctx);
 	if (0 != ret)

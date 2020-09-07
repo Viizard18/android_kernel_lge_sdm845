@@ -1553,6 +1553,7 @@ static int wlan_hdd_send_ll_stats_req(struct hdd_adapter *adapter,
 		ret = -EINVAL;
 		goto exit;
 	}
+
 	ret = osif_request_wait_for_response(request);
 	if (ret) {
 		hdd_err("Target response timed out request id %d request bitmap 0x%x",
@@ -4763,7 +4764,7 @@ static int wlan_hdd_get_sta_stats(struct wiphy *wiphy,
         adapter->hdd_stats.summary_stat.snr, adapter->hdd_stats.summary_stat.rssi,
         sinfo->tx_packets, sinfo->tx_retries, sinfo->tx_failed, sinfo->rx_packets);
 #endif
-        
+
 	sinfo->filled |= HDD_INFO_TX_BITRATE |
 			 HDD_INFO_RX_BITRATE |
 			 HDD_INFO_TX_BYTES   |

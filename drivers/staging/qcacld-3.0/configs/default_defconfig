@@ -116,6 +116,7 @@ ifeq ($(CONFIG_ARCH_MSM8998), y)
 CONFIG_QCACLD_FEATURE_METERING := y
 endif
 
+
 ifeq ($(CONFIG_ARCH_SDM845), y)
 CONFIG_QCACLD_FEATURE_METERING := y
 endif
@@ -141,7 +142,8 @@ CONFIG_ADAPTIVE_11R := y
 CONFIG_SAE_SINGLE_PMK := y
 
 #Flag to enable FILS Feature (11ai)
-CONFIG_WLAN_FEATURE_FILS := y
+# LGE_CHANGE don't use it in lge devices. it is not verified yet
+# CONFIG_WLAN_FEATURE_FILS := y
 ifneq ($(CONFIG_QCA_CLD_WLAN),)
 	ifeq (y,$(findstring y,$(CONFIG_CNSS) $(CONFIG_CNSS2) $(CONFIG_ICNSS)))
 	#Flag to enable Protected Management Frames (11w) feature

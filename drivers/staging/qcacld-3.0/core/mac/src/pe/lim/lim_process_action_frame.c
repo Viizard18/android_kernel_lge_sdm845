@@ -91,6 +91,7 @@ void lim_stop_tx_and_switch_channel(tpAniSirGlobal pMac, uint8_t sessionId)
 	    SIR_CHANSW_TX_STOP_MAX_COUNT) {
 		/* Freeze the transmission */
 		lim_frame_transmission_control(pMac, eLIM_TX_ALL, eLIM_STOP_TX);
+
 	} else {
 		/* Resume the transmission */
 		lim_frame_transmission_control(pMac, eLIM_TX_ALL, eLIM_RESUME_TX);

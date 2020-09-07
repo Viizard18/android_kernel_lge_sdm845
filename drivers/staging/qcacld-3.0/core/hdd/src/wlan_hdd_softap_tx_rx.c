@@ -601,7 +601,6 @@ static netdev_tx_t __hdd_softap_hard_start_xmit(struct sk_buff *skb,
 	QDF_NBUF_CB_TX_EXTRA_FRAG_FLAGS_NOTIFY_COMP(skb) = 0;
 
 	hdd_softap_inspect_dhcp_packet(adapter, skb, QDF_TX);
-
 	hdd_event_eapol_log(skb, QDF_TX);
 	QDF_NBUF_CB_TX_PACKET_TRACK(skb) = QDF_NBUF_TX_PKT_DATA_TRACK;
 	QDF_NBUF_UPDATE_TX_PKT_COUNT(skb, QDF_NBUF_TX_PKT_HDD);

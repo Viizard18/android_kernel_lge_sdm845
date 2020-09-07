@@ -8856,8 +8856,7 @@ enum hdd_link_speed_rpt_type {
 #define CFG_SAP_11AC_OVERRIDE_NAME             "gSAP11ACOverride"
 #define CFG_SAP_11AC_OVERRIDE_MIN              (0)
 #define CFG_SAP_11AC_OVERRIDE_MAX              (1)
-#define CFG_SAP_11AC_OVERRIDE_DEFAULT          (0)
-
+#define CFG_SAP_11AC_OVERRIDE_DEFAULT          (1) // LGE patch
 /*
  * <ini>
  * gGO11ACOverride - Override bw to 11ac for P2P GO
