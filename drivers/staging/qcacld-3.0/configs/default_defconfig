@@ -79,6 +79,7 @@ ifeq ($(CONFIG_ARCH_QCS40X), y)
 	CONFIG_MULTI_IF_LOG := y
 	CONFIG_DFS_PRI_MULTIPLIER := y
 	CONFIG_DFS_OVERRIDE_RF_THRESHOLD := y
+	CONFIG_RX_THREAD_PRIORITY := y
 endif
 
 #Flag to enable Legacy Fast Roaming2(LFR2)
@@ -143,7 +144,7 @@ CONFIG_SAE_SINGLE_PMK := y
 
 #Flag to enable FILS Feature (11ai)
 # LGE_CHANGE don't use it in lge devices. it is not verified yet
-# CONFIG_WLAN_FEATURE_FILS := y
+CONFIG_WLAN_FEATURE_FILS := y
 ifneq ($(CONFIG_QCA_CLD_WLAN),)
 	ifeq (y,$(findstring y,$(CONFIG_CNSS) $(CONFIG_CNSS2) $(CONFIG_ICNSS)))
 	#Flag to enable Protected Management Frames (11w) feature
@@ -306,6 +307,7 @@ CONFIG_DP_LFR := y
 CONFIG_HTT_PADDR64 := y
 CONFIG_RX_OL := y
 CONFIG_TX_TID_OVERRIDE := y
+CONFIG_WLAN_CLD_PM_QOS := y
 endif
 
 # As per target team, build is done as follows:
