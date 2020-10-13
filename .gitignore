@@ -126,3 +126,6 @@ Android.bp
 
 # ignore out
 out
+
+#ignore wireguard
+scripts/net
