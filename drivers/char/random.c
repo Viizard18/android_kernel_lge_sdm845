@@ -2156,12 +2156,9 @@ u32 get_random_u32(void)
 	u32 ret;
 	struct batched_entropy *batch;
 
-<<<<<<< HEAD
-=======
 	if (arch_get_random_int(&ret))
 		return ret;
 
->>>>>>> f905d0a05ff172776389e9ba91e5c36c52cf5ce7
 	batch = &get_cpu_var(batched_entropy_u32);
 	if (batch->position % ARRAY_SIZE(batch->entropy_u32) == 0) {
 		extract_crng((u8 *)batch->entropy_u32);
