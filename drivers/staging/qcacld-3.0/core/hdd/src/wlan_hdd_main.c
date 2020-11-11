@@ -4369,9 +4369,6 @@ static QDF_STATUS hdd_register_interface(struct hdd_adapter *adapter, bool rtnl_
 	int ret;
 
 	hdd_enter();
-// [LGE_CHANGE_S] 2017.06.15, neo-wifi@lge.com, Wi-Fi interface registeration
-    hdd_err("hdd_register_interface():Enter(), interface type = %d\n", adapter->wdev.iftype);
-// [LGE_CHANGE_E] 2017.06.15, neo-wifi@lge.com, Wi-Fi interface registeration
 
 	if (rtnl_held) {
 		if (strnchr(dev->name, IFNAMSIZ - 1, '%')) {

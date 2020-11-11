@@ -3599,7 +3599,6 @@ static inline void lim_set_sta_ctx_twt(tAddStaParams *sta_ctx,
  *              bssDescription      bssDescription passed to PE from the SME
  * @return None
  */
-
 QDF_STATUS lim_sta_send_add_bss(tpAniSirGlobal pMac, tpSirAssocRsp pAssocRsp,
 				   tpSchBeaconStruct pBeaconStruct,
 				   tpSirBssDescription bssDescription,

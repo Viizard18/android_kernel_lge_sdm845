@@ -2791,7 +2791,6 @@ typedef struct {
 #ifdef WLAN_FEATURE_11W
 	bool mfp_enabled;
 #endif
-
 } tSirRoamNetworkType;
 
 typedef struct SirMobilityDomainInfo {

@@ -161,6 +161,7 @@ QDF_STATUS ucfg_action_oui_send(struct wlan_objmgr_psoc *psoc)
 	}
 
 exit:
+
 	return status;
 }
 
@@ -190,5 +191,6 @@ bool ucfg_action_oui_search(struct wlan_objmgr_psoc *psoc,
 	found = action_oui_search(psoc_priv, attr, action_id);
 
 exit:
+
 	return found;
 }
