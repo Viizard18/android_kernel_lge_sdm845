@@ -397,7 +397,7 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -std=gnu89
 
 # Optimize Clang build for sdm845
-KBUILD_CFLAGS	+= -mcpu=cortex-a55
+KBUILD_CFLAGS	+= -mcpu=cortex-a55 -mtune=cortex-a55
 
 KBUILD_CPPFLAGS := -D__KERNEL__
 KBUILD_AFLAGS_KERNEL :=
