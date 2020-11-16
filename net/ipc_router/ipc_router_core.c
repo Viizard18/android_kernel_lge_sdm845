@@ -2769,7 +2769,6 @@ static void do_read_data(struct kthread_work *work)
 	struct rr_packet *pkt = NULL;
 	struct msm_ipc_port *port_ptr;
 	struct msm_ipc_router_remote_port *rport_ptr;
-	int ret;
 
 	struct msm_ipc_router_xprt_info *xprt_info =
 		container_of(work,

@@ -4687,11 +4687,11 @@ static int ext4_load_journal(struct super_block *sb,
 	ext4_clear_journal_err(sb, es);
 
 	if (!really_read_only && journal_devnum &&
-	    journal_devnum != le32_to_cpu(es->s_journal_dev)) {
-		es->s_journal_dev = cpu_to_le32(journal_devnum);
+		journal_devnum != le32_to_cpu(es->s_journal_dev)) {
+			es->s_journal_dev = cpu_to_le32(journal_devnum);
 
-		/* Make sure we flush the recovery flag to disk. */
-		ext4_commit_super(sb, 1);
+			/* Make sure we flush the recovery flag to disk. */
+			ext4_commit_super(sb, 1);
 	}
 
 	return 0;
@@ -4717,10 +4717,11 @@ static int ext4_commit_super(struct super_block *sb, int sync)
 
 #ifdef CONFIG_MACH_LGE
 	if (es && (sb->s_flags & MS_RDONLY)) {
-		if (VERITY_BLOCK(es->s_volume_name))
-		 printk("EXT4-fs : skipping %s for read only verity block(%s)\n",
+		if (VERITY_BLOCK(es->s_volume_name)) {
+			printk("EXT4-fs : skipping %s for read only verity block(%s)\n",
 				__func__, es->s_volume_name);
-		 return error;
+			return error;
+		}
 	}
 #endif
 
