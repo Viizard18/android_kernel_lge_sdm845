@@ -880,7 +880,7 @@ static void tcp_tasklet_func(unsigned long data)
 				goto exit;
 
 			/* defer the work to tcp_release_cb() */
-			set_bit(TCP_TSQ_DEFERRED, &tp->tsq_flags);
+			set_bit(TCP_TSQ_DEFERRED, &sk->sk_tsq_flags);
 
 			if (mptcp(tp))
 				mptcp_tsq_flags(sk);
