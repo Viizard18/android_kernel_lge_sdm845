@@ -908,10 +908,10 @@ exit:
 	}
 }
 #ifdef CONFIG_LGP_DATA_TCPIP_MPTCP
-#define TCP_DEFERRED_ALL (TCP_TSQ_DEFERRED |		\
-			  TCP_WRITE_TIMER_DEFERRED |	\
-			  TCP_DELACK_TIMER_DEFERRED |	\
-			  TCP_MTU_REDUCED_DEFERRED |   \
+#define TCP_DEFERRED_ALL (TCPF_TSQ_DEFERRED |		\
+			  TCPF_WRITE_TIMER_DEFERRED |	\
+			  TCPF_DELACK_TIMER_DEFERRED |	\
+			  TCPF_MTU_REDUCED_DEFERRED |   \
 			  MPTCPF_PATH_MANAGER_DEFERRED |\
 			  MPTCPF_SUB_DEFERRED)
 #else
@@ -966,12 +966,12 @@ void tcp_release_cb(struct sock *sk)
 		__sock_put(sk);
 	}
 #ifdef CONFIG_LGP_DATA_TCPIP_MPTCP
-	if (flags & (1UL << MPTCP_PATH_MANAGER_DEFERRED)) {
+	if (flags & MPTCPF_PATH_MANAGER_DEFERRED) {
 		if (tcp_sk(sk)->mpcb->pm_ops->release_sock)
 			tcp_sk(sk)->mpcb->pm_ops->release_sock(sk);
 		__sock_put(sk);
 	}
-	if (flags & (1UL << MPTCP_SUB_DEFERRED))
+	if (flags & MPTCPF_SUB_DEFERRED)
 		mptcp_tsq_sub_deferred(sk);
 #endif
 }
