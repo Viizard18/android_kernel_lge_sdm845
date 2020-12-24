@@ -14,6 +14,7 @@
 #include <linux/msm_drm_notify.h>
 #include <linux/slab.h>
 #include <linux/version.h>
+#include <linux/cpuset.h>
 
 /* The sched_param struct is located elsewhere in newer kernels */
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 10, 0)
@@ -178,6 +179,8 @@ static void __cpu_input_boost_kick_max(struct boost_drv *b,
 	unsigned long boost_jiffies = msecs_to_jiffies(duration_ms);
 	unsigned long curr_expires, new_expires;
 
+	do_hp_cpuset();
+
 	#ifdef CONFIG_DYNAMIC_STUNE_BOOST
 	do_stune_boost("top-app", dynamic_stune_boost);
 	#endif
@@ -252,6 +255,8 @@ static void max_unboost_worker(struct work_struct *work)
 
 	clear_boost_bit(b, MAX_BOOST | WAKE_BOOST);
 	wake_up(&b->boost_waitq);
+	
+	do_lp_cpuset();
 	
 	#ifdef CONFIG_DYNAMIC_STUNE_BOOST
 	reset_stune_boost("top-app");
@@ -396,6 +401,8 @@ free_handle:
 
 static void cpu_input_boost_input_disconnect(struct input_handle *handle)
 {
+	do_lp_cpuset();
+	
 	#ifdef CONFIG_DYNAMIC_STUNE_BOOST
 	reset_stune_boost("top-app");
 	#endif
