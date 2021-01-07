@@ -185,8 +185,7 @@ msm_drm-$(CONFIG_DRM_MSM) += \
 	msm_ringbuffer.o \
 	msm_prop.o \
 	msm_fence.o \
-	msm_debugfs.o \
-	msm_display_state.o
+	msm_debugfs.o
 
 obj-$(CONFIG_LGE_DISPLAY_COMMON) += lge/
 
