@@ -8,7 +8,6 @@
 #include <linux/cpu.h>
 #include <linux/cpufreq.h>
 #include <linux/kernel.h>
-#include <linux/module.h>
 #include <linux/of.h>
 #include <linux/platform_device.h>
 #include <linux/slab.h>
@@ -21,9 +20,6 @@
 		pr_err("%s: " prop " property missing\n", (node)->name);	\
 	ret;									\
 })
-
-bool enable_thermal = true;
-module_param(enable_thermal, bool, 0644);
 
 struct thermal_zone {
 	u32 gold_khz;
@@ -76,16 +72,12 @@ static void thermal_throttle_worker(struct work_struct *work)
 	old_zone = t->curr_zone;
 	new_zone = NULL;
 
-	if(enable_thermal) {
-		for (i = t->nr_zones - 1; i >= 0; i--) {
-			if (temp_deg >= t->zones[i].trip_deg) {
-				new_zone = t->zones + i;
-				break;
-			}
+	for (i = t->nr_zones - 1; i >= 0; i--) {
+		if (temp_deg >= t->zones[i].trip_deg) {
+			new_zone = t->zones + i;
+			break;
 		}
 	}
-	else
-		new_zone = NULL;
 
 	/* Update thermal zone if it changed */
 	if (new_zone != old_zone) {
