@@ -3062,7 +3062,7 @@ void __lim_process_sme_assoc_cnf_new(tpAniSirGlobal mac_ctx, uint32_t msg_type,
 
 	if (msg_buf == NULL) {
 		pe_err("msg_buf is NULL");
-		goto end;
+		return;
 	}
 
 	qdf_mem_copy(&assoc_cnf, msg_buf, sizeof(struct sSirSmeAssocCnf));
@@ -3733,7 +3733,6 @@ static void __lim_process_roam_scan_offload_req(tpAniSirGlobal mac_ctx,
 
 	wma_msg.type = WMA_ROAM_SCAN_OFFLOAD_REQ;
 	wma_msg.bodyptr = req_buffer;
-
 	status = wma_post_ctrl_msg(mac_ctx, &wma_msg);
 	if (QDF_STATUS_SUCCESS != status) {
 		pe_err("Posting WMA_ROAM_SCAN_OFFLOAD_REQ failed");
@@ -6226,6 +6225,8 @@ void lim_remove_duplicate_bssid_node(struct sir_rssi_disallow_lst *entry,
 	}
 }
 
+#define BLACKLIST_MAX_TIME_TO_HONOR      255000
+
 void lim_add_roam_blacklist_ap(tpAniSirGlobal mac_ctx,
 			       struct roam_blacklist_event *src_lst)
 {
@@ -6236,6 +6237,13 @@ void lim_add_roam_blacklist_ap(tpAniSirGlobal mac_ctx,
 
 	blacklist = &src_lst->roam_blacklist[0];
 	for (i = 0; i < src_lst->num_entries; i++) {
+		if (blacklist->timeout > BLACKLIST_MAX_TIME_TO_HONOR) {
+			pe_info("%pM timeout %u greater than %d ignoring entry",
+				blacklist->bssid.bytes, blacklist->timeout,
+				BLACKLIST_MAX_TIME_TO_HONOR);
+			blacklist++;
+			continue;
+		}
 		entry = qdf_mem_malloc(sizeof(struct sir_rssi_disallow_lst));
 		if (!entry)
 			return;

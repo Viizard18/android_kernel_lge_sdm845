@@ -855,6 +855,22 @@ static int hdd_llstats_radio_fill_channels(struct hdd_adapter *adapter,
 			hdd_err("nla_put failed");
 			return -EINVAL;
 		}
+
+		if (adapter->hdd_ctx &&
+		    adapter->hdd_ctx->ll_stats_per_chan_rx_tx_time) {
+			if (nla_put_u32(
+				vendor_event,
+				QCA_WLAN_VENDOR_ATTR_LL_STATS_CHANNEL_TX_TIME,
+				channel_stats->tx_time) ||
+			    nla_put_u32(
+				vendor_event,
+				QCA_WLAN_VENDOR_ATTR_LL_STATS_CHANNEL_RX_TIME,
+				channel_stats->rx_time)) {
+				hdd_err("nla_put failed");
+				return -EINVAL;
+			}
+		}
+
 		nla_nest_end(vendor_event, chinfo);
 	}
 	nla_nest_end(vendor_event, chlist);
@@ -1602,7 +1618,6 @@ static int wlan_hdd_send_ll_stats_req(struct hdd_adapter *adapter,
 		ret = -EINVAL;
 		goto exit;
 	}
-
 	ret = osif_request_wait_for_response(request);
 	if (ret) {
 		hdd_err("Target response timed out request id %d request bitmap 0x%x",
@@ -3297,8 +3312,11 @@ static void wlan_hdd_fill_summary_stats(tCsrSummaryStatsInfo *stats,
  *
  * Return: errno
  */
+#ifndef FEATURE_SUPPORT_LGE //LGE_PATCH : remove static
+static 
+#endif
 int
-wlan_hdd_get_sap_stats(struct hdd_adapter *adapter, struct station_info *info)  //LGE_PATCH : remove static
+wlan_hdd_get_sap_stats(struct hdd_adapter *adapter, struct station_info *info)
 {
 	int ret;
 

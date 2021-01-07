@@ -1,5 +1,4 @@
 /*
-
  * Copyright (c) 2016-2020 The Linux Foundation. All rights reserved.
  *
  * Permission to use, copy, modify, and/or distribute this software for
