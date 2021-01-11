@@ -277,8 +277,6 @@ config CPU_FREQ_GOV_BLU_SCHEDUTIL
 
 	  If in doubt, say N.
 
-endif
-
 comment "CPU frequency scaling drivers"
 
 config CPUFREQ_DT
