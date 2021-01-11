@@ -1193,13 +1193,6 @@ void policy_mgr_dump_current_concurrency(struct wlan_objmgr_psoc *psoc)
 		break;
 	}
 
-<<<<<<< HEAD
-=======
-#ifdef FEATURE_SUPPORT_LGE
-	is_dbs = cur_dbs_mode;
-#endif //FEATURE_SUPPORT_LGE
-
->>>>>>> erick/10.0
 	return;
 }
 
@@ -3008,15 +3001,3 @@ void policy_mgr_remove_sap_mandatory_chan(struct wlan_objmgr_psoc *psoc,
 	qdf_mem_copy(pm_ctx->sap_mandatory_channels, chan_list, num_chan);
 	pm_ctx->sap_mandatory_channels_len = num_chan;
 }
-<<<<<<< HEAD
-=======
-
-#ifdef FEATURE_SUPPORT_LGE
-int policy_mgr_get_dbs_mode(void);
-int policy_mgr_get_dbs_mode(void)
-{
-	return is_dbs;
-}
-#endif //FEATURE_SUPPORT_LGE
-
->>>>>>> erick/10.0

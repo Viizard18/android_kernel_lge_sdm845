@@ -3312,14 +3312,7 @@ static void wlan_hdd_fill_summary_stats(tCsrSummaryStatsInfo *stats,
  *
  * Return: errno
  */
-<<<<<<< HEAD
 static int
-=======
-#ifndef FEATURE_SUPPORT_LGE //LGE_PATCH : remove static
-static 
-#endif
-int
->>>>>>> erick/10.0
 wlan_hdd_get_sap_stats(struct hdd_adapter *adapter, struct station_info *info)
 {
 	int ret;

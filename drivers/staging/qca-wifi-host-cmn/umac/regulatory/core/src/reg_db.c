@@ -227,13 +227,6 @@ enum country_code {
 	CTRY_XA = 4100,   /* Used by Linux Client for legacy MKK domain */
 	CTRY_YEMEN = 887,
 	CTRY_ZIMBABWE = 716,
-<<<<<<< HEAD
-=======
-#if FEATURE_SUPPORT_LGE
-	CTRY_LGEDC = 900,
-	CTRY_LGED0 = 901,
-#endif
->>>>>>> erick/10.0
 };
 
 enum reg_domain {
@@ -729,13 +722,6 @@ const struct country_code_to_reg_domain g_all_countries[] = {
 	{CTRY_WALLIS_AND_FUTUNA, ETSI1_WORLD, "WF", 40, 160, 0},
 	{CTRY_YEMEN, ETSI1_WORLD, "YE", 40, 160, 0},
 	{CTRY_ZIMBABWE, ETSI1_WORLD, "ZW", 40, 160, 0},
-<<<<<<< HEAD
-=======
-#if FEATURE_SUPPORT_LGE
-	{CTRY_LGEDC, WORLD_LGE1, "DC", 40, 160, 0},
-	{CTRY_LGED0, WORLD_LGE2, "D0", 40, 160, 0},
-#endif
->>>>>>> erick/10.0
 };
 #else
 const struct country_code_to_reg_domain g_all_countries[] = {
@@ -941,13 +927,6 @@ const struct country_code_to_reg_domain g_all_countries[] = {
 	{CTRY_WALLIS_AND_FUTUNA, ETSI1_WORLD, "WF", 40, 160, 0},
 	{CTRY_YEMEN, ETSI1_WORLD, "YE", 40, 160, 0},
 	{CTRY_ZIMBABWE, ETSI1_WORLD, "ZW", 40, 160, 0},
-<<<<<<< HEAD
-=======
-#if FEATURE_SUPPORT_LGE
-	{CTRY_LGEDC, WORLD_LGE1, "DC", 40, 160, 0},
-	{CTRY_LGED0, WORLD_LGE2, "D0", 40, 160, 0},
-#endif
->>>>>>> erick/10.0
 };
 #endif
 #endif
@@ -964,13 +943,6 @@ enum reg_domains_2g {
 	WORLD_2G_1,
 	WORLD_2G_2,
 	WORLD_2G_3,
-<<<<<<< HEAD
-=======
-#if FEATURE_SUPPORT_LGE
-	WORLD_2G_LGE1,
-	WORLD_2G_LGE2,
-#endif
->>>>>>> erick/10.0
 
 	REG_DOMAINS_2G_MAX,
 };
@@ -1028,12 +1000,6 @@ enum reg_domains_5g {
 	MKK17,
 	WORLD_5G_1,
 	WORLD_5G_2,
-<<<<<<< HEAD
-=======
-#if FEATURE_SUPPORT_LGE
-	WORLD_5G_LGE,
-#endif
->>>>>>> erick/10.0
 
 	REG_DOMAINS_5G_MAX,
 };
@@ -1188,10 +1154,6 @@ enum reg_rules_5g {
 	CHAN_5170_5250_8,
 	CHAN_5170_5250_9,
 	CHAN_5170_5250_10,
-<<<<<<< HEAD
-=======
-#endif
->>>>>>> erick/10.0
 	CHAN_5170_5250_11,
 	CHAN_5170_5330_1,
 	CHAN_5170_5330_2,
@@ -1275,15 +1237,7 @@ const struct regulatory_rule reg_rules_5g[] = {
 	[CHAN_5170_5250_7] = {5170, 5250, 80, 20, REGULATORY_CHAN_INDOOR_ONLY},
 	[CHAN_5170_5250_8] = {5170, 5250, 80, 23, REGULATORY_CHAN_INDOOR_ONLY},
 	[CHAN_5170_5250_9] = {5170, 5250, 40, 30, 0},
-<<<<<<< HEAD
 	[CHAN_5170_5250_10] = {5170, 5250, 20, 20, REGULATORY_CHAN_INDOOR_ONLY},
-=======
-#if FEATURE_SUPPORT_LGE
-	[CHAN_5170_5250_10] = {5170, 5250, 80, 23, REGULATORY_CHAN_NO_IR},
-#else
-	[CHAN_5170_5250_10] = {5170, 5250, 20, 20, REGULATORY_CHAN_INDOOR_ONLY},
-#endif
->>>>>>> erick/10.0
 	[CHAN_5170_5250_11] = {5170, 5250, 80, 16, 0},
 	[CHAN_5170_5330_1] = {5170, 5330, 160, 20, REGULATORY_CHAN_NO_IR},
 	[CHAN_5170_5330_2] = {5170, 5330, 160, 24, 0},

@@ -17126,13 +17126,7 @@ int wlan_hdd_cfg80211_init(struct device *dev,
 	    || pCfg->isEseIniFeatureEnabled
 #endif
 	    ) {
-<<<<<<< HEAD
 		wiphy->flags |= WIPHY_FLAG_SUPPORTS_FW_ROAM;
-=======
-// LGE_CHANGE_S, Do not use SUPPORTS_FW_ROAM because we support BSSID selection by framework
-		//wiphy->flags |= WIPHY_FLAG_SUPPORTS_FW_ROAM;
-// LGE_CHANGE_E, Do not use SUPPORTS_FW_ROAM because we support BSSID selection by framework
->>>>>>> erick/10.0
 	}
 #ifdef FEATURE_WLAN_TDLS
 	wiphy->flags |= WIPHY_FLAG_SUPPORTS_TDLS
