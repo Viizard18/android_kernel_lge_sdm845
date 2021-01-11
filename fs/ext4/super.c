@@ -1594,8 +1594,8 @@ static const struct mount_opts {
 	{Opt_noquota, (EXT4_MOUNT_QUOTA | EXT4_MOUNT_USRQUOTA |
 		       EXT4_MOUNT_GRPQUOTA | EXT4_MOUNT_PRJQUOTA),
 							MOPT_CLEAR | MOPT_Q},
-	{Opt_usrjquota, 0, MOPT_Q},
-	{Opt_grpjquota, 0, MOPT_Q},
+	{Opt_usrjquota, 0, MOPT_Q | MOPT_STRING},
+	{Opt_grpjquota, 0, MOPT_Q | MOPT_STRING},
 	{Opt_offusrjquota, 0, MOPT_Q},
 	{Opt_offgrpjquota, 0, MOPT_Q},
 	{Opt_jqfmt_vfsold, QFMT_VFS_OLD, MOPT_QFMT},
@@ -4357,6 +4357,7 @@ cantfind_ext4:
 #ifdef CONFIG_QUOTA
 failed_mount8:
 	ext4_unregister_sysfs(sb);
+	kobject_put(&sbi->s_kobj);
 #endif
 failed_mount7:
 	ext4_unregister_li_request(sb);
@@ -4682,11 +4683,11 @@ static int ext4_load_journal(struct super_block *sb,
 	ext4_clear_journal_err(sb, es);
 
 	if (!really_read_only && journal_devnum &&
-	    journal_devnum != le32_to_cpu(es->s_journal_dev)) {
-		es->s_journal_dev = cpu_to_le32(journal_devnum);
+		journal_devnum != le32_to_cpu(es->s_journal_dev)) {
+			es->s_journal_dev = cpu_to_le32(journal_devnum);
 
-		/* Make sure we flush the recovery flag to disk. */
-		ext4_commit_super(sb, 1);
+			/* Make sure we flush the recovery flag to disk. */
+			ext4_commit_super(sb, 1);
 	}
 
 	return 0;
@@ -4712,10 +4713,11 @@ static int ext4_commit_super(struct super_block *sb, int sync)
 
 #ifdef CONFIG_MACH_LGE
 	if (es && (sb->s_flags & MS_RDONLY)) {
-		if (VERITY_BLOCK(es->s_volume_name))
-		 printk("EXT4-fs : skipping %s for read only verity block(%s)\n",
+		if (VERITY_BLOCK(es->s_volume_name)) {
+			printk("EXT4-fs : skipping %s for read only verity block(%s)\n",
 				__func__, es->s_volume_name);
-		 return error;
+			return error;
+		}
 	}
 #endif
 
@@ -5460,6 +5462,11 @@ static int ext4_quota_on(struct super_block *sb, int type, int format_id,
 	/* Quotafile not on the same filesystem? */
 	if (path->dentry->d_sb != sb)
 		return -EXDEV;
+
+	/* Quota already enabled for this file? */
+	if (IS_NOQUOTA(d_inode(path->dentry)))
+		return -EBUSY;
+
 	/* Journaling quota? */
 	if (EXT4_SB(sb)->s_qf_names[type]) {
 		/* Quotafile not in fs root? */

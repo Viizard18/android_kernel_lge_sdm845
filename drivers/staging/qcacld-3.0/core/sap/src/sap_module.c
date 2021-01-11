@@ -1402,7 +1402,10 @@ QDF_STATUS wlansap_set_channel_change_with_csa(struct sap_context *sapContext,
 		       pMac->psoc, sapContext->sessionId, POLICY_MGR_BAND_5),
 		       sap_get_csa_reason_str(sapContext->csa_reason),
 		       sapContext->csa_reason, strict, sapContext->sessionId);
+<<<<<<< HEAD
 #endif
+=======
+>>>>>>> erick/10.0
 
 	sta_sap_scc_on_dfs_chan =
 		policy_mgr_is_sta_sap_scc_allowed_on_dfs_chan(pMac->psoc);
