@@ -433,7 +433,7 @@ config NET_DEVLINK
 
 config MAY_USE_DEVLINK
 	tristate
-	default m if NET_DEVLINK=m
+	default y if NET_DEVLINK=m
 	default y if NET_DEVLINK=y || NET_DEVLINK=n
 	help
 	  Drivers using the devlink infrastructure should have a dependency
