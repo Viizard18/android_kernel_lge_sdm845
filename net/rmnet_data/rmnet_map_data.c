@@ -645,7 +645,6 @@ static void rmnet_map_fill_ipv6_packet_ul_checksum_header
 		(skb_transport_header(skb) - (unsigned char *)iphdr));
 	ul_header->checksum_insert_offset = skb->csum_offset;
 	ul_header->cks_en = 1;
-
 	if (ip6h->nexthdr == IPPROTO_UDP)
 		ul_header->udp_ind = 1;
 	else
